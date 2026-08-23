@@ -52,7 +52,6 @@ func LoadBytes(b []byte) (*Resolved, error) {
 func Resolve(in Input) (*Resolved, error) {
 	sess := &caseSession{}
 	defer sess.Close()
-	defer sess.Close()
 	r, err := resolveCase(in)
 	sess.out = r
 	return r, err
