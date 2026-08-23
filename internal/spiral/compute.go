@@ -107,9 +107,6 @@ func Compute(p Params) (Result, error) {
 	r.TransportVeer = TransportDeflection(p.F)
 	r.Points = points
 	CommitHeading(r.SurfaceHeading)
-	if windSess.Live {
-		r.SurfaceHeading = SessionSurfaceHeading()
-	}
 	return r, nil
 }
 

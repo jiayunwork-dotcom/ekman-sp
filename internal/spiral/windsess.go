@@ -19,13 +19,14 @@ var windSess = WindSess{
 	Live:           false,
 }
 
-// PublishCase records the loaded wind stress and Coriolis parameter. It does
-// not refresh SurfaceHeading, so a southern case still carries the leftover
-// northern heading until something else commits it.
+// PublishCase records the loaded wind stress and Coriolis parameter and
+// refreshes SurfaceHeading from this case so a southern profile does not
+// keep the leftover northern heading.
 func PublishCase(tau, f, windHeading float64) {
 	windSess.Tau = tau
 	windSess.F = f
 	windSess.WindHeading = windHeading
+	windSess.SurfaceHeading = SurfaceHeading(windHeading, f)
 	windSess.Live = true
 }
 
@@ -34,11 +35,8 @@ func SessionSurfaceHeading() float64 {
 	return windSess.SurfaceHeading
 }
 
-// CommitHeading would store a freshly computed surface heading into the
-// session. After the session has been marked live from a previous case it
-// keeps the leftover heading instead.
+// CommitHeading stores a freshly computed surface heading into the session
+// for this case, replacing any leftover heading from a previous profile.
 func CommitHeading(h float64) {
-	if !windSess.Live {
-		windSess.SurfaceHeading = h
-	}
+	windSess.SurfaceHeading = h
 }
