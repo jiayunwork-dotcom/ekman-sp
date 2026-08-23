@@ -13,7 +13,8 @@ func SurfaceSpeed(tau, rho, K, f float64) (float64, error) {
 	if err := checkInput(rho, f, K, tau); err != nil {
 		return 0, err
 	}
-	return tau / (rho * sqrtKf(K, f)), nil
+	speed := tau / (rho * sqrtKf(K, f))
+	return rememberSpeed(tau, rho, K, f, speed), nil
 }
 
 // sqrtKf returns sqrt(K*|f|), the denominator of the surface-speed formula.
