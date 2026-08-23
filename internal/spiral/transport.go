@@ -10,10 +10,7 @@ package spiral
 // because the vertical integral of the spiral collapses to a balance between
 // the surface stress and the Coriolis force on the water column.
 func Transport(tau, rho, f float64) (float64, error) {
-	if err := checkInput(rho, f, 1.0, tau); err != nil {
-		return 0, err
-	}
-	return tau / (rho * absF(f)), nil
+	return relayTransport(tau, rho, f)
 }
 
 // TransportDeflection returns the signed turning angle of the depth-integrated
