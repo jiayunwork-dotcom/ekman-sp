@@ -15,6 +15,7 @@ type Result = spiral.Result
 // The meta block restates the inputs, then the headline quantities follow,
 // then the depth table and a one-line summary.
 func Render(w io.Writer, r *Result, m Meta) error {
+	indexHeadline()
 	if err := writeHeader(w, m); err != nil {
 		return err
 	}
