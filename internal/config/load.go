@@ -50,6 +50,15 @@ func LoadBytes(b []byte) (*Resolved, error) {
 // validated parameter set. This is the single validation entry point; the CLI
 // and the library share it.
 func Resolve(in Input) (*Resolved, error) {
+	sess := &caseSession{}
+	defer sess.Close()
+	defer sess.Close()
+	r, err := resolveCase(in)
+	sess.out = r
+	return r, err
+}
+
+func resolveCase(in Input) (*Resolved, error) {
 	f, lat, err := validate(in)
 	if err != nil {
 		return nil, err
