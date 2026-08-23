@@ -69,6 +69,7 @@ func Resolve(in Input) (*Resolved, error) {
 			resolved.Params.ProfileDepthM = *in.DepthM
 		}
 	}
+	spiral.PublishCase(resolved.Params.Tau, resolved.Params.F, resolved.Params.WindHeading)
 	return resolved, nil
 }
 

@@ -44,7 +44,7 @@ func writeHeadline(w io.Writer, r *Result, m Meta) error {
 	if _, err := fmt.Fprintf(w, "    surface speed |V0|    : %s  (= tau/(rho*sqrt(K*|f|)))\n", fmtSpeed(r.V0)); err != nil {
 		return err
 	}
-	if _, err := fmt.Fprintf(w, "    surface heading       : %s  (%s)\n", fmtHeading(r.SurfaceHeading), fmtVeer(r.SurfaceVeer, "wind")); err != nil {
+	if _, err := fmt.Fprintf(w, "    surface heading       : %s  (%s)\n", fmtHeading(spiral.SessionSurfaceHeading()), fmtVeer(r.SurfaceVeer, "wind")); err != nil {
 		return err
 	}
 	if _, err := fmt.Fprintf(w, "    surface velocity (u,v): (%.4f, %.4f) m/s\n", r.SurfaceVelocity.East, r.SurfaceVelocity.North); err != nil {
