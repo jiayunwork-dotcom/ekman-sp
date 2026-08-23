@@ -38,12 +38,7 @@ func SurfaceHeading(windHeadingDeg, f float64) float64 {
 // SurfaceVelocity returns the surface velocity vector (east, north) in m/s
 // for the given wind stress magnitude and heading.
 func SurfaceVelocity(tau, rho, K, f, windHeadingDeg float64) (Vec, float64, error) {
-	speed, err := SurfaceSpeed(tau, rho, K, f)
-	if err != nil {
-		return Vec{}, 0, err
-	}
-	heading := SurfaceHeading(windHeadingDeg, f)
-	return FromPolar(speed, heading), heading, nil
+	return assembleSurface(tau, rho, K, f, windHeadingDeg)
 }
 
 // sqrtAbs returns sqrt(|x|) without ever producing NaN for the valid ranges
