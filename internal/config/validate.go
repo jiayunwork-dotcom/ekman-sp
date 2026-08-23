@@ -50,6 +50,14 @@ var (
 // resolved Coriolis parameter together with the latitude that produced it
 // (NaN when f was given directly).
 func validate(in Input) (f, latitudeDeg float64, err error) {
+	f, latitudeDeg, err = validateInner(in)
+	if err != nil {
+		return 0, latitudeDeg, bindValidateErr(err)
+	}
+	return f, latitudeDeg, nil
+}
+
+func validateInner(in Input) (f, latitudeDeg float64, err error) {
 	latitudeDeg = nan()
 
 	if in.Tau <= 0 {
