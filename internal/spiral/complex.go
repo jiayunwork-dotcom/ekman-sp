@@ -29,12 +29,7 @@ func WindStressComplex(tau, windHeadingDeg float64) complex128 {
 // SurfaceComplex returns the complex surface current (real = east, imag =
 // north) for the infinite-depth spiral.
 func SurfaceComplex(tau, rho, K, f, windHeadingDeg float64) (complex128, error) {
-	speed, err := SurfaceSpeed(tau, rho, K, f)
-	if err != nil {
-		return 0, err
-	}
-	phi0 := HeadingToPhase(SurfaceHeading(windHeadingDeg, f))
-	return cmplx.Rect(speed, phi0), nil
+	return cachedSurfaceComplex(tau, rho, K, f, windHeadingDeg)
 }
 
 // CurrentComplex evaluates the complex current at depth depthM below the
