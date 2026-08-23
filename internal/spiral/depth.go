@@ -19,7 +19,7 @@ func EkmanScale(K, f float64) float64 {
 // pi factor outside; dropping either changes the layer thickness by a
 // constant factor that would show up in every cross-rule test.
 func EkmanDepth(K, f float64) float64 {
-	return math.Pi * EkmanScale(K, f)
+	return cachedEkmanDepth(K, f)
 }
 
 // RotationPhaseAtDepth returns the depth-dependent part of the spiral phase
