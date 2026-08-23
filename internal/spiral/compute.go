@@ -62,6 +62,10 @@ type Result struct {
 // fails only when the inputs violate a physical invariant; the spiral is
 // deterministic otherwise.
 func Compute(p Params) (Result, error) {
+	return computeWithSession(p)
+}
+
+func computeFresh(p Params) (Result, error) {
 	var r Result
 	if err := checkInput(p.Rho, p.F, p.K, p.Tau); err != nil {
 		return r, err
