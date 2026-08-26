@@ -1,0 +1,8 @@
+{
+  "tau": 0.2,
+  "wind_dir_deg": 90,
+  "rho": 1025,
+  "latitude_deg": -45,
+  "K": 0.05,
+  "npoints": 21
+}
